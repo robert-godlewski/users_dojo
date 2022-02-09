@@ -5,8 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New User</title>
+    <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='style.css') }}">
+    <style></style>
 </head>
 <body>
-    <p>Hello New User</p>
+    <h1>Add a New User</h1>
+    <form action="/add_new_user" method="post" class="left">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name">
+        <label for="last_name>">Last Name:</label>
+        <input type="text" name="last_name">
+        <label for="email">Email:</label>
+        <input type="email" name="email">
+        <input type="submit" value="create user">
+    </form>
+    <a href="/" class="right">Home</a>
 </body>
 </html>

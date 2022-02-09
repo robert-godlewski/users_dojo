@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    margin: 20px;
+}
+
+table, tr, th, td {
+    border: 1px solid black;
+}
+
+table {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+th, td {
+    padding: 5px;
+}
+
+form {
+    border: 2px solid black;
+    width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+input {
+    display: block;
+    border: 1px solid black;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.left{
+    display: inline-block;
+}
+
+.right{
+    display: inline-block;
+}
