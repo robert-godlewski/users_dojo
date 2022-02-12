@@ -6,6 +6,17 @@ app = Flask(__name__)
 
 app.secret_key = 'hello users'
 
+# Used to search for the id to rout for showing individual groups
+def search_by_id(form_data):
+    data = {
+        "first_name": form_data['first_name'],
+        "last_name": form_data['last_name'],
+        "email": form_data['email']
+    }
+    data_id_raw = User.get_id_by_email(data)
+    return data_id_raw[0]['id']
+
+
 # index is routed to users
 @app.route('/')
 def main_page(): return redirect("/users")
@@ -14,7 +25,6 @@ def main_page(): return redirect("/users")
 @app.route('/users')
 def read(): 
     users = User.get_all()
-    print(users)
     return render_template("index.html", all_users=users)
 
 # Page that allows the client to make a new user
@@ -24,9 +34,10 @@ def new(): return render_template("new_user.html")
 # Creates the new user from create
 @app.route('/user/create', methods=['POST'])
 def create():
-    print(request.form)
     User.save(request.form)
-    return redirect('/users')
+    # return redirect('/users')
+    data_id = search_by_id(request.form)
+    return redirect(f'/user/show/{data_id}')
 
 # Shows you only one user
 @app.route('/user/show/<int:id>')
@@ -47,8 +58,18 @@ def edit(id):
 # Updates the new edits
 @app.route('/user/update', methods=['POST'])
 def update():
-    print(request.form)
     User.edit_one(request.form)
+    # return redirect('/users')
+    data_id = search_by_id(request.form)
+    return redirect(f'/user/show/{data_id}')
+
+# Finds the user to delete and removes them from the database
+@app.route('/user/destroy/<int:id>')
+def delete(id):
+    data = {
+        "id": id
+    }
+    User.destroy_one(data)
     return redirect('/users')
 
 
