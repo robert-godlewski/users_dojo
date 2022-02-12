@@ -36,6 +36,18 @@ input {
     margin-bottom: 5px;
 }
 
+p {
+    display: block;
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+#details {
+    display: block; 
+    border: 1px solid black;
+    width: 300px;
+}
+
 .left{
     display: inline-block;
 }
